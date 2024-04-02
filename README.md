@@ -18,7 +18,7 @@ National Central University
 摘要
 ---
 
-本研究旨在設計一個基於機器學習的中風預測系統，根據使用者輸入的相關資訊，預測中風的可能性。本研究採用了二元分類的方式，使用了Kaggle上的中風預測資料集，對資料進行了初步分析和前處理。接著，爲了克服數據集資料的不平衡，本研究嘗試了不同的方法進行訓練，包括SMOTE、對於不同的類別指定不同的訓練權重、EasyEnsemble，並使用了ROC曲線和AUC值來評估模型的效能。本研究將模型部署在一個網站上，讓使用者可以透過網頁表單輸入自己的資訊，並得到中風的預測結果和相關的建議。代碼可在https://github.com/chris-pan-0220/stroke-prediction上獲得。
+本研究旨在設計一個基於機器學習的中風預測系統，根據使用者輸入的相關資訊，預測中風的可能性。本研究採用了二元分類的方式，使用了Kaggle上的中風預測資料集，對資料進行了初步分析和前處理。接著，爲了克服數據集資料的不平衡，本研究嘗試了不同的方法進行訓練，包括SMOTE、對於不同的類別指定不同的訓練權重、EasyEnsemble，並使用了ROC曲線和AUC值來評估模型的效能。本研究將模型部署在一個網站上，讓使用者可以透過網頁表單輸入自己的資訊，並得到中風的預測結果和相關的建議。
 
 
 1.簡介
@@ -43,13 +43,21 @@ National Central University
 
 **2.1資料視覺化**
 
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/d950c756-1253-4534-b561-e84e93196528)
+
 圖2 性別與中風的關係
- 
+
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/b469eaf9-75e6-4c7c-a89e-ad3820a21b84)
+
 圖3高血壓和心臟病與中風的關係
-  
+
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/e56cc088-669d-4d0c-b678-1fcbe1018160)
+
 圖4 工作類型與中風的關係
  
-  
+  ![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/d80f8e42-d3ba-45e1-935e-f9e7c451cc5c)
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/67560ec2-01bf-44c7-8d20-4a7fe0acba9d)
+
                   圖5 年齡與中風的關係                                                            圖6 平均血糖值與中風的關係
   
 由圖2可以看出資料集中風的群體中，男性比女性略高，且性別為other的群體只有一筆資料，因此移除other；由圖3可以看出分別患高血壓和分別患心臟病的人中風的相關係數很小，但是同時換高血壓和心臟病的人中風的概率明顯升高；由圖4可以看出雖然大多數人的工作型態都是private，但是Self-employed中風的比例稍微高一些；由圖5可以看出年齡越高，中風的概率越大；由圖6可以看出沒中風的人主要血糖值主要都分布在平均值上；而中風人的主要血糖值除了分布在平均值上，也分布在血糖值偏高的部分。
@@ -124,19 +132,69 @@ Mode-2 Xgboost+scale_pos_weight是使用Xgboost進行訓練，並且使用scale_
 
 Model-3 EasyEnsemble使用多個分類器對不平衡數據集進行採樣並進行集成學習，由圖13、14的訓練集、測試集結果來看，都有最佳的表現。
 
+*Baseline: Xgboost*
+
+     
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/7dc5bd51-87f1-4085-8ca5-b01b2eae269f)
+
+圖7 train-baseline
+
+ ![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/bfbb27f3-7832-43bd-8233-3a1768a67f94)
+
+ 圖8 test-baseline
+
+
+---
+ *Model-1: SMOTE + Xgboost*
+ 
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/920dab46-23b4-4788-a2b6-3245881e97f2)
+
+ 
+圖9 train-Xgboost+SMOTE
+
+ ![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/1862a74b-a3e3-472e-808f-ea9febd100fe)
+
+圖10 test-Xgboost+SMOTE
+
+---
+
+ *Model-2: Xgboost + scale_pos_weight*
+
+ ![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/f69e26ac-f5b0-40f1-b5af-008a9ff7692a)
+
+圖11 train-Xgboost+scale_pos_weight
+
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/483f4f09-e013-4349-a51a-df94d8880634)
+ 
+圖12 test-Xgboost+scale_pos_weight
+
+---
+ 
+*Model-3: EasyEnsemble*
+
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/5ce6cb91-6d4b-4786-826b-6efce1c94739)
+ 
+圖13 train-EasyEnsemble
+
+ ![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/33b66012-c935-4aeb-943a-80cc09003df0)
+
+圖14 test-EasyEnsemble
+
 
    本研究將三種模型的預測結果進行了比較和分析，發現EasyEnsemble的模型表現最好。本研究認為，這是因為EasyEnsemble的模型可以有效地解決資料的不平衡問題，並且可以利用多個分類器的集成學習來提高預測的準確性和穩定性。
 
 feature importance
  
-                                                              
-
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/cdfa5321-fa0c-4746-9479-e9c34f81d45a)
+                                  
 由圖15，每一個classifier的feature importance都不太相同, 但是重要的feature大致一樣.縂體來看，有三個特徵起到決定性的作用，分別是：age、avg_glucose_level、bmi。
 
 5.網站部署
 ---
 為了讓使用者可以方便地使用我們的模型，我們將模型部署在一個網站上，讓使用者可以透過網頁表單輸入自己的相關資訊，並得到中風的預測結果。我們使用了Flask作為網站框架，並使用了Bootstrap作為網頁設計。
- 
+
+ ![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/dcf13d0e-df94-4ab9-b22e-f4a20c62d810)
+
                                                                                     圖16.網站使用界面截圖
 使用者可以在表單中填寫自己的年齡、性別、職業、血壓、心臟病、血糖、BMI、吸菸狀況等資訊，並點擊提交按鈕，就可以得到我們的模型的預測結果和相關的建議。模型會根據使用者的資訊，計算出中風的可能性，並將其顯示在網頁上。
 
