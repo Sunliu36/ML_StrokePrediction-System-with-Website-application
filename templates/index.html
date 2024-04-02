@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>Care Your Health - Stroke Prediction</title>
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='assets/favicon.ico') }}" />
+    <!-- Bootstrap Icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic"
+        rel="stylesheet" type="text/css" />
+    <!-- SimpleLightbox plugin CSS-->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="{{ url_for('static', filename='css/styles.css') }}" rel="stylesheet" />
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+</head>
+
+<body id="page-top">
+    <!-- Navigation-->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+        <div class="container px-4 px-lg-5">
+            <a class="navbar-brand" href="#page-top">Top</a>
+            <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#aboutstroke">About stroke</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#prediction">Prediction</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#portfolio">Data analyze </a></li>
+                    <li class="nav-item"><a class="nav-link" href="#ourmodel">About our model</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Masthead-->
+    <header class="masthead">
+        <div class="container px-4 px-lg-5 h-100">
+            <div class="row gx-4 gx-lg-5 h-100 align-items-center justify-content-center text-center">
+                <div class="col-lg-8 align-self-end">
+                    <h1 class="text-white font-weight-bold">Stroke-Predict</h1>
+                    <hr class="divider" />
+                </div>
+                <div class="col-lg-8 align-self-baseline">
+                    <p class="text-white-75 mb-5">We provide knowledge to let u understand about stroke and let u
+                        predict the probability you get stroke</p>
+                    <a class="btn btn-primary btn-xl" href="#prediction">Get started</a>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- About-->
+    <section class="page-section bg-primary" id="aboutstroke">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8 ">
+                    <h2 class="text-white mt-0 text-center">About stroke!</h2>
+                    <hr class="divider divider-light" />
+                    <p class="text-white-75 text-center mb-4" >有許多因素會造成中風<br>
+                        <ol class="lh-lg text-black">
+                            <li class="m-2">年齡＆性別：中風盛行率為19.82/1,000，每一千個人約有20人會中風，其中男性中風機率又比女性高，好發於75-79歲</li>
+                            <li class="m-2">居住地區：對於高年齡族群，低都市化程度地區居民罹患中風發生率較高。對於年輕人，都會區中風的年輕人比鄉村地區較易中風，都會地區每一千人有18.9人發病，鄉村地區則為13.0人 </li>
+                            <li class="m-2">BMI：中風的原因有4成是因肥胖所造成，BMI≧24導致中風之風險是一般人的1.69倍，其中男性中風機率又比女性高</li>
+                            <li class="m-2">心臟病：若心臟中滯留形成血塊，且不幸掉落到腦部，便形成腦中風通常年輕人（小於45歲）因心臟問題引起腦中風的機會較多</li>
+                            <li class="m-2">高血壓：約有 50％的腦中風是高血壓引起的。</li>
+                            <li class="m-2">血糖值：第 2 型糖尿病患者得腦中風的機率比正常人多五倍，而無症狀的高血糖患者比正常血糖的人得腦中風的機會高出 3.5 倍。</li>
+                            <li class="m-2">抽菸：抽菸導致男性中風比例為 14.2 %；女性中風比例為 3.1 %，且吸菸時間越久，菸癮越重，導致中風的機率越高。</li>
+                        </ol>
+                    </p>
+                    <center><a class="btn btn-light btn-xl " href="#prediction">Start prediction!</a></center>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact-->
+    <section class="page-section" id="prediction">
+        <div class="container px-4 px-lg-5">
+            <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-lg-8 col-xl-6 text-center">
+                    <h2 class="mt-0">Start prediction!</h2>
+                    <hr class="divider" />
+                    <p class="text-muted mb-5">predict the probability you get stroke!</p>
+                </div>
+            </div>
+            <div class="row gx-4 gx-lg-5 justify-content-center mb-5">
+                <div class="col-lg-6">
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- * * SB Forms Contact Form * *-->
+                    <!-- * * * * * * * * * * * * * * *-->
+                    <!-- This form is pre-integrated with SB Forms.-->
+                    <!-- To make this form functional, sign up at-->
+                    <!-- https://startbootstrap.com/solution/contact-forms-->
+                    <!-- to get an API token!-->
+                    <form action="/submit" method="post" id="contactForm" >
+                        <!-- gender input-->
+                        <div class="form-floating mb-3">
+                            <select class="form-control" id="gender" type="gender" name="gender" required>
+                                <option value="">Choose your gender</option>
+                                <option value="Female">Female</option>
+                                <option value="Male">Male</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            <div class="invalid-feedback">gender is required.</div>
+                        </div>
+                        <!-- age input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="age" type="text" oninput="judgeage();" placeholder="Enter your age"
+                               required name="age"/>
+                            <label for="age">Age</label>
+                            <div id="showage" class="my-2 text-danger"></div>
+                            <div class="invalid-feedback">age is required.</div>
+                        </div>
+
+                        <!-- hypertension input-->
+                        <div class="form-floating mb-3">
+                            <select class="form-control" id="hypertension" type="hypertension" required
+                                name="hypertension">
+                                <option value="">Do you have hypertension</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                            <div class="invalid-feedback">required.</div>
+                        </div>
+
+                        <!-- heart_disease input-->
+                        <div class="form-floating mb-3">
+                            <select class="form-control" id="heart_disease" type="heart_disease" required
+                                name="heart_disease">
+                                <option value="">Do you have heart disease</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                            <div class="invalid-feedback">required.</div>
+                        </div>
+
+                        <!-- ever_married input-->
+                        <div class="form-floating mb-3">
+                            <select class="form-control" id="ever_married" type="ever_married" required
+                                name="ever_married">
+                                <option value="">Have you ever married</option>
+                                <option value="0">No</option>
+                                <option value="1">Yes</option>
+                            </select>
+                            <div class="invalid-feedback">required.</div>
+                        </div>
+
+                        <!-- work_type input-->
+                        <div class="form-floating mb-3">
+                            <select class="form-control" id="work_type" type="work_type" required  name="work_type" >
+                                <option value="">what's your work type</option>
+                                <option value="Govt_job">Government job</option>
+                                <option value="Never_worked">Never worked</option>
+                                <option value="Private">Private</option>
+                                <option value="Self-employed">Self-employed</option>
+                                <option value="children">children</option>
+                            </select>
+                            <div class="invalid-feedback">required.</div>
+                        </div>
+
+                        <!-- Residence_type	 input-->
+                        <div class="form-floating mb-3">
+                            <select class="form-control" id="Residence_type" type="Residence_type" required
+                                name="Residence_type">
+                                <option value="">Where do you live</option>
+                                <option value="Urban">Urban</option>
+                                <option value="Rural">Rural</option>
+                            </select>
+                            <div class="invalid-feedback">required.</div>
+                        </div>
+
+                        <!-- avg_glucose_level input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="avg_glucose_level" type="text"
+                                placeholder="Enter your average glucose level..."  required  name="avg_glucose_level"/>
+                            <label for="avg_glucose_level">average glucose level</label>
+                            <div class="invalid-feedback">A average
+                                glucose level is required.</div>
+                        </div>
+
+                        <!-- bmi input-->
+                        <div class="form-floating mb-3">
+                            <input class="form-control" id="bmi" type="text" placeholder="Enter your bmi..." required  name="bmi" />
+                            <label for="bmi">bmi</label>
+                            <div class="invalid-feedback">A bmi is required.</div>
+                        </div>
+
+                        <!-- smoking_status input-->
+                        <div class="form-floating mb-3">
+                            <select class="form-control" id="smoking_status" type="smoking_status" required
+                                name="smoking_status">
+                                <option value="">What's your smoking status</option>
+                                <option value="smokes">smokes</option>
+                                <option value="never smoked">never smoked</option>
+                                <option value="formerly smoked">formerly smoked</option>
+                            </select>
+                            <div class="invalid-feedback">required.</div>
+                        </div>
+                        <div class="d-grid">
+                            <input class="btn btn-primary btn-xl" id="submitButton"  type="submit">
+                        </div>
+                    </form>
+                    <br><br>
+                        <!--預測回傳值-->
+                        <div class="card mt-5 mx-auto mw-50 shadow-lg" style="max-width: 80%;">
+                            <div class="card-header">預測結果</div>
+                            <ul class="list-group list-group-flush  lh-lg">
+                              <li class="list-group-item" ><h3 id="showResult"></h3></li>
+
+                              
+                            </ul>
+                        </div>
+                        <center></center>
+                        
+                 
+                </div>
+            </div>
+
+        </div>
+        </div>
+    </section>
+   
+    <div id="aboutData">
+        <center>
+            <h2 class="mt-0">Data analyze</h2>
+        </center>
+        <div class="card mt-5 mx-auto mw-50 shadow-lg" style="max-width: 50%;">
+            <div class="card-header">關於資料</div>
+            <ul class="list-group list-group-flush  lh-lg">
+              <li class="list-group-item">資料數量：15304筆</li>
+              <li class="list-group-item">類別數量：有中風、沒中風共2種</li>
+              <li class="list-group-item">類別比例：有中風：沒中風 = 23 : 1 (14672:632) 整體上來說，對於每一個變因而言，有中風的比例都會比較小，所以要選擇ROC, AUC等指標</li>
+            </ul>
+        </div>
+        <!-- <h2>關於資料</h2>
+        資料數量：15304筆<br>
+        類別數量：有中風、沒中風共2種<br>
+        類別比例：<br>
+        有中風：沒中風 = 23 : 1 (14672:632) 整體上來說，對於每一個變因而言，有中風的比例都會比較小，所以要選擇ROC, AUC等指標<br> -->
+        <div class="card my-5 mx-auto mw-50 shadow-lg" style="max-width: 50%;">
+            <div class="card-header">資料前處理</div>
+            <ul class="list-group list-group-flush lh-lg">
+              <li class="list-group-item">1. 性別：Other只有1筆，因此移除Other</li>
+              <li class="list-group-item">2. 取16歲以上的資料：16歲以下的樣本比較沒有代表性，因為(1)一般認為心臟疾病、高血壓與中風會比較有相關性，但是對於幼齡兒童來說，我們不知道做這些檢測的可信度是否足夠；對於稍長一點的青少年，此兩種疾病是完全沒有，將資料納入訓練可能會影響結果。所以我們的策略就是將系統開放給16歲以上的人使用。</li>
+              <li class="list-group-item">3. binning for BMI：BMI的數值依據不同的區間會有不同的意義(過輕，正常，過重，肥胖，重度肥胖)，並且我們發現BMI有一些極端值，例如說將近80，這時候我們就可以對BMI做binning來減少極端值的影響。(但是經過後來的觀察，BMI對於中風沒有相當明顯的影響)</li>
+              <li class="list-group-item">4. one-hot encoding：使用one-hot encoding對類別變數進行編碼</li>
+            </ul>
+        </div>
+        <!-- <h2>資料前處理</h2>
+        1.性別：Other只有1筆，因此移除Other<br>
+        2.取16歲以上的資料：16歲以下的樣本比較沒有代表性，因為(1)一般認為心臟疾病、高血壓與中風會比較有相關性，但是對於幼齡兒童來說，我們不知道做這些檢測的可信度是否足夠；對於稍長一點的青少年，此兩種疾病是完全沒有，將資料納入訓練可能會影響結果。所以我們的策略就是將系統開放給16歲以上的人使用。<br>
+        3.binning for BMI：BMI的數值依據不同的區間會有不同的意義(過輕，正常，過重，肥胖，重度肥胖)，並且我們發現BMI有一些極端值，例如說將近80，這時候我們就可以對BMI做binning來減少極端值的影響。(但是經過後來的觀察，BMI對於中風沒有相當明顯的影響)<br>
+        4.one-hot encoding：使用one-hot encoding對類別變數進行編碼<br> -->
+    </div>
+    <!-- diagram-->
+    <div id="portfolio">
+        <div class="container-fluid p-0">
+            <div class="row g-0 justify-content-center">
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box"
+                        href="{{ url_for('static', filename='assets/img/work_stroke.png') }}"
+                        title="自雇者(Self-employed)中風的比例稍微高一些">
+                        <img class="img-fluid"
+                            src="{{ url_for('static', filename='assets/img/work_stroke.png') }}" alt="..." />
+                        <div class="portfolio-box-caption">
+                            <div class="project-category text-white-50">資料觀察</div>
+                            <div class="project-name">工作型態</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box"
+                        href="{{ url_for('static', filename='assets/img/avg_glucouse.png') }}"
+                        title="用小提琴圖觀察平均血糖值：可以明顯地看出，沒中風的人主要血糖值主要都分布在平均值上；而有中風的人除了分布在平均值上，也分布在血糖值偏高的部分（在尾端的部分）">
+                        <img class="img-fluid"
+                            src="{{ url_for('static', filename='assets/img/avg_glucouse.png') }}" alt="..." />
+                        <div class="portfolio-box-caption">
+                            <div class="project-category text-white-50">資料觀察</div>
+                            <div class="project-name">血糖值平均值和中風關係</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box"
+                        href="{{ url_for('static', filename='assets/img/heart.png') }}"
+                        title="同時有高血壓和心臟病時，中風的機率會明顯提高">
+                        <img class="img-fluid"
+                            src="{{ url_for('static', filename='assets/img/heart.png') }}" alt="..." />
+                        <div class="portfolio-box-caption">
+                            <div class="project-category text-white-50">資料觀察</div>
+                            <div class="project-name">高血壓和心臟病對中風影響</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box"
+                        href="{{ url_for('static', filename='assets/img/gender.png') }}"
+                        title="在中風的群體中，男性比女性略高">
+                        <img class="img-fluid"
+                            src="{{ url_for('static', filename='assets/img/gender.png') }}" alt="..." />
+                        <div class="portfolio-box-caption">
+                            <div class="project-category text-white-50">資料觀察</div>
+                            <div class="project-name">性別與中風關係</div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-6">
+                    <a class="portfolio-box"
+                        href="{{ url_for('static', filename='assets/img/age.png') }}"
+                        title="年齡高越容易中風">
+                        <img class="img-fluid"
+                            src="{{ url_for('static', filename='assets/img/age.png') }}."
+                            alt="..." height="600px">
+                        <div class="portfolio-box-caption">
+                            <div class="project-category text-white-50">資料觀察</div>
+                            <div class="project-name">年齡和中風關係</div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About our model-->
+    <section class="page-section" id="ourmodel">
+        <div class="container px-4 px-lg-5">
+            <h2 class="text-center mt-0">Our model</h2>
+            <hr class="divider" />
+            <div class="card my-5 mx-auto shadow-lg text-center" style="max-width: 80%;">
+                <div class="card-header fs-2 text-center">度量指標</div>
+                <div class="card-title m-2 ">
+                    <p class="fs-4">ROC, Receiver operator characteristic</p>
+                </div>
+                <div class="card-body">
+                    <p>TPR：在所有實際為陽性的樣本中，被正確地判斷為陽性之比率。</p>
+                    <p>$$TPR = TP / (TP + FN)$$</p>
+                    <p>FPR：在所有實際為陰性的樣本中，被錯誤地判斷為陽性之比率。</p>
+                    <p>$$FPR = FP / (FP + TN)$$</p>
+                    <p class="lh-lg w-75 mx-auto lh-lg">給定一個二元分類模型和它的閾值，就能從所有樣本的（陽性／陰性）真實值和預測值計算出一個 (X=FPR, Y=TPR) 座標點。將同一模型每個閾值的 (FPR, TPR) 座標都畫在ROC空間裡，就成為特定模型的ROC曲線。</p>
+                    <img src="static/assets/img/ROC.png" width="400px" height="400px">
+                    <hr class="">
+                </div>
+                <div class="card-title m-2 ">
+                    <p class="fs-4">AUC, Area under the Curve of ROC</p>
+                </div>
+                <div class="card-body">
+                    <p>ROC曲線下方的面積，其意義為：</p>
+                    <ul class="list-group text-start mb-2">
+                        <li class="list-group-item">AUC = 1，是完美分類器，採用這個預測模型時，存在至少一個閾值能得出完美預測。絕大多數預測的場合，不存在完美分類器。</li>
+                        <li class="list-group-item">0.5 < AUC < 1，優於隨機猜測。這個分類器（模型）妥善設定閾值的話，能有預測價值。</li>
+                        <li class="list-group-item">AUC = 0.5，跟隨機猜測一樣（例：丟銅板），模型沒有預測價值。</li>
+                        <li class="list-group-item">AUC < 0.5，比隨機猜測還差；但只要總是反預測而行，就優於隨機猜測</li>
+                    </ul>
+                    <img src="static/assets/img/AUC.png" width="400px" height="400px">
+                </div>
+            </div>
+
+            <div class="card my-5 mx-auto shadow-lg text-center" style="max-width: 80%;">
+                <div class="card-header fs-2 text-center">模型訓練</div>
+                <div class="card-title m-2 ">
+                    <p class="fs-4">scale pos weight</p>
+                </div>
+                <div class="card-body">
+                    <p class="w-75 mx-auto lh-lg">這是對於不同的類別指定不同的訓練權重。在資料類別不平衡的情況下，將xgboost模型的損失函數依據類別的比例進行調整，訓練結束之後AUC score上升為0.62，tuning之後為0.78，在第二次submission得到0.818的分數。</p>
+                    <hr class="">
+                </div>
+                <div class="card-title m-2 ">
+                    <p class="fs-4">SMOTE</p>
+                </div>
+                <div class="card-body">
+                    <p class="w-75 mx-auto lh-lg">一種對資料進行上採樣(Upsampling)的方法，在類別多跟類別少的資料之間生成新的資料。</p>
+                    <ul class="list-group list-group-numbered text-start mb-2">
+                        <li class="list-group-item">設定一個採樣倍率 N ，也就是對每個樣本需要生成幾個合成樣本</li>
+                        <li class="list-group-item">設定一個近鄰值 K ，針對該樣本找出 K 個最近鄰樣本並從中隨機選一個</li>
+                        <li class="list-group-item">
+                            根據以下公式來創造 N 個樣本<br>
+                            <img src="static/assets/img/SMOTE2.png">
+                        </li>
+                    </ul>
+                    <hr>
+                </div>
+                <div class="card-title m-2 ">
+                    <p class="fs-4">EasyEnsemble</p>
+                </div>
+                <div class="card-body">
+                    <p class="w-75 mx-auto lh-lg">演算法先將資料切分成好數個子集，並且對多數標籤做隨機採樣，採樣次數等於子集數量，並且採樣數量等於少數類別的數量。將採樣後的多數類別資料，以及少數類別資料放入每個子集中，對於每一個子集進行使用不同的分類器進行ensemble learning。進行預測時，會將資料輸入每一個分類器，並將這些預測結果進行加權。我們使用此模型進行訓練，最後在submission上得到0.865的分數。</p>
+                    <img class="img-fluid" src="static/assets/img/EasyEnsemble.png" >
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer-->
+    <footer class="bg-light py-5">
+        <div class="container px-4 px-lg-5">
+            <div class="small text-center text-muted">Copyright &copy; 2023 - 111-2 ML Group6</div>
+        </div>
+    </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- SimpleLightbox plugin JS-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+    <!-- Core theme JS-->
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+    <!-- * *                               SB Forms JS                               * *-->
+    <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+    <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+    <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript">
+        let showResult=document.getElementById('showResult')
+
+        $(document).on('submit', '#contactForm', function (e) {
+            e.preventDefault();
+            $.ajax({
+                type: 'POST',
+                url: '/submit',
+                data: {
+                    gender: $("#gender").val(),
+                    age: $("#age").val(),
+                    hypertension: $("#hypertension").val(),
+                    heart_disease: $("#heart_disease").val(),
+                    ever_married: $("#ever_married").val(),
+                    work_type: $("#work_type").val(),
+                    Residence_type: $("#Residence_type").val(),
+                    avg_glucose_level: $("#avg_glucose_level").val(),
+                    bmi: $("#bmi").val(),
+                    smoking_status: $("#smoking_status").val(),
+                },
+                success: function (response) {
+                    showResult.innerHTML=response;
+                }
+            })
+        });
+        
+    </script>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</body>
+
+</html>
