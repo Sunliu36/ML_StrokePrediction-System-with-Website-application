@@ -185,14 +185,16 @@ Model-3 EasyEnsemble使用多個分類器對不平衡數據集進行採樣並進
 
 feature importance
  
-                                                              
-
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/cdfa5321-fa0c-4746-9479-e9c34f81d45a)
+                                  
 由圖15，每一個classifier的feature importance都不太相同, 但是重要的feature大致一樣.縂體來看，有三個特徵起到決定性的作用，分別是：age、avg_glucose_level、bmi。
 
 5.網站部署
 ---
 為了讓使用者可以方便地使用我們的模型，我們將模型部署在一個網站上，讓使用者可以透過網頁表單輸入自己的相關資訊，並得到中風的預測結果。我們使用了Flask作為網站框架，並使用了Bootstrap作為網頁設計。
- 
+
+ ![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/dcf13d0e-df94-4ab9-b22e-f4a20c62d810)
+
                                                                                     圖16.網站使用界面截圖
 使用者可以在表單中填寫自己的年齡、性別、職業、血壓、心臟病、血糖、BMI、吸菸狀況等資訊，並點擊提交按鈕，就可以得到我們的模型的預測結果和相關的建議。模型會根據使用者的資訊，計算出中風的可能性，並將其顯示在網頁上。
 
