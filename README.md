@@ -43,13 +43,21 @@ National Central University
 
 **2.1資料視覺化**
 
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/d950c756-1253-4534-b561-e84e93196528)
+
 圖2 性別與中風的關係
- 
+
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/b469eaf9-75e6-4c7c-a89e-ad3820a21b84)
+
 圖3高血壓和心臟病與中風的關係
-  
+
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/e56cc088-669d-4d0c-b678-1fcbe1018160)
+
 圖4 工作類型與中風的關係
  
-  
+  ![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/d80f8e42-d3ba-45e1-935e-f9e7c451cc5c)
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/67560ec2-01bf-44c7-8d20-4a7fe0acba9d)
+
                   圖5 年齡與中風的關係                                                            圖6 平均血糖值與中風的關係
   
 由圖2可以看出資料集中風的群體中，男性比女性略高，且性別為other的群體只有一筆資料，因此移除other；由圖3可以看出分別患高血壓和分別患心臟病的人中風的相關係數很小，但是同時換高血壓和心臟病的人中風的概率明顯升高；由圖4可以看出雖然大多數人的工作型態都是private，但是Self-employed中風的比例稍微高一些；由圖5可以看出年齡越高，中風的概率越大；由圖6可以看出沒中風的人主要血糖值主要都分布在平均值上；而中風人的主要血糖值除了分布在平均值上，也分布在血糖值偏高的部分。
@@ -123,6 +131,54 @@ Model-l SMOTE+Xgboost是對訓練集採用SMOTE進行上採樣，然後再使用
 Mode-2 Xgboost+scale_pos_weight是使用Xgboost進行訓練，並且使用scale_pos_weight參數來調整訓練時兩種類別的權重比例。從下圖11、12可以看到在測試集上的ROC curve表現有顯著的提升，此一方法能夠讓模型成功學習不平衡的數據。
 
 Model-3 EasyEnsemble使用多個分類器對不平衡數據集進行採樣並進行集成學習，由圖13、14的訓練集、測試集結果來看，都有最佳的表現。
+
+*Baseline: Xgboost*
+
+     
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/7dc5bd51-87f1-4085-8ca5-b01b2eae269f)
+
+圖7 train-baseline
+
+ ![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/bfbb27f3-7832-43bd-8233-3a1768a67f94)
+
+ 圖8 test-baseline
+
+
+---
+ *Model-1: SMOTE + Xgboost*
+ 
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/920dab46-23b4-4788-a2b6-3245881e97f2)
+
+ 
+圖9 train-Xgboost+SMOTE
+
+ ![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/1862a74b-a3e3-472e-808f-ea9febd100fe)
+
+圖10 test-Xgboost+SMOTE
+
+---
+
+ *Model-2: Xgboost + scale_pos_weight*
+
+ ![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/f69e26ac-f5b0-40f1-b5af-008a9ff7692a)
+
+圖11 train-Xgboost+scale_pos_weight
+
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/483f4f09-e013-4349-a51a-df94d8880634)
+ 
+圖12 test-Xgboost+scale_pos_weight
+
+---
+ 
+*Model-3: EasyEnsemble*
+
+![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/5ce6cb91-6d4b-4786-826b-6efce1c94739)
+ 
+圖13 train-EasyEnsemble
+
+ ![image](https://github.com/Sunliu36/ML_StrokePrediction-System-with-Website-application/assets/91177467/33b66012-c935-4aeb-943a-80cc09003df0)
+
+圖14 test-EasyEnsemble
 
 
    本研究將三種模型的預測結果進行了比較和分析，發現EasyEnsemble的模型表現最好。本研究認為，這是因為EasyEnsemble的模型可以有效地解決資料的不平衡問題，並且可以利用多個分類器的集成學習來提高預測的準確性和穩定性。
